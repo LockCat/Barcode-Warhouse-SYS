@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>&trade; RizzAI </title>
+</head>
+<body>
+    <h1>Item Hinzuf&#252;gen</h1>
+    <form action="add_item.php" method="post" enctype="multipart/form-data">
+        <label for="itemName">Artikel Name:</label>
+        <input type="text" name="itemName" required><br>
+
+        <label for="description">Beschreibung:</label>
+        <textarea name="description" rows="4" required></textarea><br>
+
+        <label for="image">Bild (optional):</label>
+        <input type="file" name="image"><br>
+
+        <label for="location">Ortsbeschreibung:</label>
+        <input type="text" name="location" required><br>
+
+        <input type="submit" value="Item Hinzuf&#252;gen">
+    </form>
+
+    <li><a href="index.html"><button>Home</button></a></li>
+</body>
+</html>

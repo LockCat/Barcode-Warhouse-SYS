@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>&trade; RizzAI </title>
+</head>
+
+<body>
+    <div class="video">
+        <div class="line animate"></div>
+        <video autoplay="true" id="video-preview"></video>
+    </div>
+
+    <input type="text" id="searchInput" placeholder="Search by ID or Item Name">
+    <button onclick="search()">Search</button>
+
+    <!-- Hier können Sie ein HTML-Element hinzufügen, um die Suchergebnisse anzuzeigen -->
+    <div id="resultContainer"></div>
+
+    <!-- Buttons für die Navigation -->
+    <button onclick="viewAllItems()">Item Liste</button>
+    <button onclick="addItem()">Add Item</button>
+    <button onclick="redirectToAddList()">Add List</button>Developed by RizzAI. 
+    <script src="script.js"></script>
+
+<script>
+    function redirectToAddList() {
+        window.location.href = "add_list.html";
+    }
+</script>
+</body>
+
+</html>

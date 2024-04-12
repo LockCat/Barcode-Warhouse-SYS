@@ -1,0 +1,68 @@
+$prime: #ff6e48;
+$ciBlue: #00fff1;
+$ciRed: #ff00aa;
+$ciWhite: #ffffff;
+$ciGreen: #46fcb4;
+$second: #0c1016;
+
+$roboto: 'Roboto';
+
+body,
+html {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $second;
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+    color: $ciBlue;
+    font-family: $roboto;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.video {
+    position: relative;
+    padding: 0.5rem;
+    width: 30rem;
+    background-color: $ciBlue;
+    border-radius: 1rem;
+    video {
+        width: 100%;
+        border-radius: 1rem;
+        overflow: hidden;
+        aspect-ratio: 5/3.8;
+        vertical-align: bottom;
+    }
+    .line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        background-color: $ciBlue;
+        width: 32rem;
+        height: 0.5rem;
+        border-radius: 1rem;
+        opacity: 0;
+        transform: translate(-1rem, 0);
+        &.animate {
+            opacity: 1;
+            animation: move infinite ease-in-out 1s alternate;
+        }
+    }
+}
+
+@keyframes move {
+    0% {
+        top: 10%;
+    }
+    100% {
+        top: 90%;
+    }
+}

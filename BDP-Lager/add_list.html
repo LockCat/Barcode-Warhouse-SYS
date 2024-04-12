@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lager Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Lager Management</h1>
+
+    <!-- Formular zum Erstellen einer neuen Liste -->
+    <h2>Neue Gegenstandsliste</h2>
+    <form action="create_list.php" method="post">
+        <label for="new_list_name">New List Name:</label>
+        <input type="text" id="new_list_name" name="new_list_name" required>
+        <br>
+        <input type="submit" value="Create List">
+    </form>
+
+    <!-- Formular zum Hinzufügen eines Eintrags mit ID aus anderer Datenbank -->
+    <h2>Item in Liste eintragen</h2>
+    <form action="copy_entry.php" method="post">
+        <label for="entry_id">Item ID:</label>
+        <!-- Eingabefeld für die gescannte ID -->
+        <input type="text" id="entry_id" name="entry_id" required readonly>
+        <br>
+        <label for="target_table">Listen Name:</label>
+        <input type="text" id="target_table" name="target_table" required>
+        <br>
+
+        <!-- Video-Element und JS-Datei hinzufügen -->
+        <div class="video">
+            <video id="video-preview" autoplay muted playsinline></video>
+            <div class="line"></div>
+        </div>
+
+        <script>
+            if (!('BarcodeDetector' in window)) {
+                console.log('no BarcodeDetector support');
+            } else {
+                const barcodeDetector = new BarcodeDetector({
+                    formats: ['aztec', 'code_128', 'code_39', 'code_93', 'codabar', 'data_matrix', 'ean_13', 'ean_8', 'itf', 'pdf417', 'qr_code', 'upc_a', 'upc_e'],
+                });
+
+                navigator.mediaDevices
+                    .getUserMedia({ video: true })
+                    .then(async (videoStream) => {
+                        document.getElementById('video-preview').srcObject = videoStream;
+                    });
+
+                setInterval(scan, 500);
+
+                async function scan() {
+                    const barcodes = await barcodeDetector.detect(document.getElementById('video-preview'));
+                    if (barcodes.length > 0) {
+                        const scannedValue = barcodes[0].rawValue;
+                        console.log(scannedValue);
+                        
+                        // Setze die gescannte ID im Eingabefeld für Entry ID ein
+                        document.getElementById('entry_id').value = scannedValue;
+                    }
+                }
+            }
+        </script>
+
+        <input type="submit" value="Item zu Liste hinzuf&#252;gen">
+    </form>
+
+    <a href="index.html"><button>Home</button></a>
+</body>
+</html>
